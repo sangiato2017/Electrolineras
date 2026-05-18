@@ -147,6 +147,7 @@ SISTEMA DE GESTIÓN DE ELECTROLINERAS
 
 > **Nota:** La primera descarga del mapa puede tardar varios minutos dependiendo de la conexión a Internet, ya que obtiene la red vial completa de los cuatro municipios del AMB.
 
+> **Extra** En la carpeta amb se encuentran 1 ejemplo de ejecucion con 900 recorridos por cada veiculo
 ---
 
 ## 8. Desactivar el entorno virtual
