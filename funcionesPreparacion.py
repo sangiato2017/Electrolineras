@@ -467,6 +467,7 @@ def simulacion(n, df_puntos, df_electro, df_carros, G, umbral_pct=20.0):
                         break
 
                     km_restantes = (v["bateria_actual"] / 100.0) * v["autonomia_km"]
+                    
                     if resultado["dist_electro_km"] > km_restantes:
                         descartados += 1
                         v["bateria_actual"] = 100.0
@@ -485,7 +486,7 @@ def simulacion(n, df_puntos, df_electro, df_carros, G, umbral_pct=20.0):
                         "evento_lat"    : round(datos_nodo["y"], 6),
                         "evento_lon"    : round(datos_nodo["x"], 6),
                         "bateria_pct"   : round(v["bateria_actual"], 2),
-                        "km_restantes"  : round(km_restantes, 4),
+                        "km_restantes" : float(f"{km_restantes:.4f}"),
                         **resultado,
                     })
                     
