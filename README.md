@@ -4,13 +4,13 @@ Simulación de recorridos de vehículos eléctricos sobre la red vial del **Áre
 
 ---
 
-## ⚡ Instalación rápida
+## ⚡ Instalación e inicio rápidos
 
 ¿Ya tienes Python y el entorno virtual activado? Copia y pega esto:
 
 **macOS / Linux**
 ```bash
-git clone https://github.com/sangiato2017/Electrolineras.git && cd Electrolineras && python -m venv venv && source venv/bin/activate && pip install --upgrade pip &&pip install -r requirements.txt
+git clone https://github.com/sangiato2017/Electrolineras.git && cd Electrolineras && python -m venv venv && source venv/bin/activate && pip install --upgrade pip && pip install -r requirements.txt && python menuOpcionesE.py
 ```
 
 **Windows (PowerShell)**
@@ -38,8 +38,8 @@ git clone https://github.com/sangiato2017/Electrolineras.git; cd Electrolineras;
 
 ```bash
 # Con git:
-git clone <url-del-repositorio>
-cd <nombre-de-la-carpeta>
+git clone https://github.com/sangiato2017/Electrolineras.git
+cd Electrolineras
 
 # O simplemente coloca los archivos en una carpeta y abre una terminal allí.
 ```
