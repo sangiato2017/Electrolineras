@@ -4,6 +4,26 @@ Simulación de recorridos de vehículos eléctricos sobre la red vial del **Áre
 
 ---
 
+## ⚡ Instalación rápida
+
+¿Ya tienes Python y el entorno virtual activado? Copia y pega esto:
+
+**macOS / Linux**
+```bash
+python -m venv venv && source venv/bin/activate && pip install -r requirements.txt
+```
+
+**Windows (PowerShell)**
+```powershell
+python -m venv venv; .\venv\Scripts\Activate.ps1; pip install -r requirements.txt
+```
+
+> Si no tienes el archivo `requirements.txt`, consulta la [sección 5](#5-archivo-requirementstxt) para crearlo.
+
+---
+
+## Instalación paso a paso
+
 ## Requisitos previos
 
 - **Python 3.10 o superior**
@@ -147,7 +167,6 @@ SISTEMA DE GESTIÓN DE ELECTROLINERAS
 
 > **Nota:** La primera descarga del mapa puede tardar varios minutos dependiendo de la conexión a Internet, ya que obtiene la red vial completa de los cuatro municipios del AMB.
 
-> **Extra** En la carpeta amb se encuentran 1 ejemplo de ejecucion con 900 recorridos por cada veiculo
 ---
 
 ## 8. Desactivar el entorno virtual
