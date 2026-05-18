@@ -10,6 +10,7 @@ import matplotlib as plt
 
 import funcionesPreparacion as fp
 import funcionesEstadisticas as fe
+import funcionesclustering as fc
 
 G = None
 df = None
@@ -32,7 +33,8 @@ def mostrar_menu(G):
     print("2 |Configurar parametros para la simulación de recorridos")
     print("3 |Ejecutar simulación de recorridos")
     print("4 |Mostrar estadisticas y resultados")
-    print("5 |Salir")
+    print("5 |Sugerir electrolineras")
+    print("6 |Salir")
     print("\n" + "="*40)
 
 def simularProceso(seg, mns):
@@ -148,7 +150,17 @@ def opcion_3():
     
 def opcion_4():
     fe.mostrar_estadisticas()
+    name = fp.get_filename("estadistica", "csv")
+    fe.guardar_estadisticas(name)
     
+def opcion_5():
+    
+    df_reg    = fe.cargar_registros()
+    df_electro = listdf[1]  
+    
+    n = enteroPosi("\n¿Cuántas nuevas electrolineras sugerir? ")
+    fc.analisis_completo(df_reg, df_electro, n_sugerencias=n)
+
 
 #============Principal============#
 def menu_principal():
@@ -158,7 +170,7 @@ def menu_principal():
     while True:
         
         mostrar_menu(G)
-        op = enteroPosi("\nElija una opcion (1-5): ")
+        op = enteroPosi("\nElija una opcion (1-6): ")
         
         match op:
             case 1:
@@ -186,12 +198,21 @@ def menu_principal():
                 if(key >= 3):
                     
                     opcion_4()
+                    key = 4
                 else:
                     print("\n[-] Error: No se han simulado recorridos" )
                     errorSalida()
             case 5:
+                if(key >= 4):
+                    opcion_5()
+                else:
+                    print("\n[-] Error: No se han simulado recorridos" )
+                    errorSalida()
+                
+            case 6:
                 salida(0.2, "\nSaliendo")
-                break
+                break 
+            
             case _:
                 print("\n[-] Error: Opcion invalida")
                 errorSalida()

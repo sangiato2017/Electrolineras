@@ -160,6 +160,19 @@ def top_n_electrolineras(n=3):
     print("\n")
 
 
+def guardar_estadisticas(ruta):
+    df = cargar_registros()
+    
+    resumen = df.groupby("electro_nombre").agg(
+        visitas        = ("evento_id",       "count"),
+        dist_prom      = ("dist_electro_km", "mean"),
+        lat_electro    = ("electro_lat",     "first"),
+        lon_electro    = ("electro_lon",     "first"),
+    ).reset_index()
+    
+    resumen.to_csv(ruta, index=False)
+    print(f"[+] Estadísticas guardadas → {ruta}")
+
 # ─────────────────────────────────────────────
 #  Función principal que agrupa todo
 # ─────────────────────────────────────────────
@@ -242,3 +255,4 @@ def mostrar_estadisticas():
     estadisticas_electrolineras()
     estadisticas_detalle_electrolineras()
     estadisticas_por_modelo()
+    
