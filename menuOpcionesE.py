@@ -9,14 +9,15 @@ import matplotlib as plt
 
 
 import funcionesPreparacion as fp
+import funcionesEstadisticas as fe
 
-G          = None
-df         = None
-df_P_E     = None
+G = None
+df = None
+df_P_E = None
 nodosfixed = None
-df_puntos  = None
+df_puntos = None
 df_electro = None
-n          = 0
+n = 0
 #============Menú============#
 
 def mostrar_menu(G):
@@ -143,6 +144,10 @@ def opcion_3():
     dfreg = fp.simulacion(n, df_puntos, df_electro, carros, G)
     name = fp.get_filename("registros","csv")
     fp.guardar(dfreg, name)
+    print(f"registros guardados como: {name}")
+    
+def opcion_4():
+    fe.mostrar_estadisticas()
     
 
 #============Principal============#
@@ -179,7 +184,8 @@ def menu_principal():
                     errorSalida()
             case 4:
                 if(key >= 3):
-                    simularProceso(2, "\nGenerando estadisticas y resultados")
+                    
+                    opcion_4()
                 else:
                     print("\n[-] Error: No se han simulado recorridos" )
                     errorSalida()
