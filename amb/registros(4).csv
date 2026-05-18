@@ -1,5 +1,0 @@
-﻿evento_id,viaje_id,carro_modelo,autonomia_km,origen_nombre,destino_nombre,evento_nodo,evento_lat,evento_lon,bateria_pct,km_restantes,electro_id,electro_nombre,electro_nodo,electro_lat,electro_lon,dist_electro_km
-1,20,BYD DOLPHIN SURF 30 kWh Active,190.0,Sede Recreacional Catay,UTS (Unidades Tecnológicas de Santander),5720990503,6.974714,-73.043798,19.96,37.9169,4,Estacion de Servicio Terpel de Piedecuesta,9602033008,6.998348410998912,-73.05270638323637,4.6899
-2,41,BYD DOLPHIN SURF 30 kWh Active,190.0,Sede Recreacional Catay,UNAB,1197395803,7.010822,-73.096433,19.98,37.9611,4,Estacion de Servicio Terpel de Piedecuesta,9602033008,6.998348410998912,-73.05270638323637,9.5074
-3,50,BYD SEAL 82.5 kWh RWD Design,455.0,UIS Campus Bucarica (Centro),Sede Recreacional Catay,12352398169,7.107426,-73.109488,19.99,90.9391,2,Centro Comercial Cacique,5631396478,7.099383171372943,-73.10738728564714,0.9181
-4,71,BYD SEAL 82.5 kWh RWD Design,455.0,UIS Campus Central,UIS Parque Tecnológico Guatiguará,839102636,7.075369,-73.104226,20.0,90.9967,3,Centro Comercial Canaveral,4703451524,7.070722605372017,-73.10545322620052,0.874
