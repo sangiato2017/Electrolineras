@@ -15,7 +15,7 @@ git clone https://github.com/sangiato2017/Electrolineras.git && cd Electrolinera
 
 **Windows (PowerShell)**
 ```powershell
-git clone https://github.com/sangiato2017/Electrolineras.git; cd Electrolineras; python -m venv venv; .\venv\Scripts\Activate.ps1; pip install --upgrade pip; pip install -r requirements.txt
+git clone https://github.com/sangiato2017/Electrolineras.git; cd Electrolineras; python -m venv venv; .\venv\Scripts\Activate.ps1; pip install --upgrade pip; pip install -r requirements.txt; python menuOpcionesE.py
 ```
 
 > Si no tienes el archivo `requirements.txt`, consulta la [sección 5](#5-archivo-requirementstxt) para crearlo.
