@@ -1,7 +1,16 @@
 # .gitignore
-.venv/
+
 __pycache__/
 *.pyc
 amb/mapa.graphml
+amb/carros.csv
+amb/electrolineras.csv
+amb/puntosclave.csv
 cache/
 aa/
+
+# python env
+
+.venv/
+venv/
+env/
