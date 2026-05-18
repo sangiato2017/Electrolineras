@@ -40,7 +40,7 @@ def electroEstadisticas():
     print("   ESTADÍSTICAS DE ELECTROLINERAS MÁS VISITADAS")
     print("=" * 40)
 
-    tEventos = len(df)
+    tRecargas = len(df)
 
     rank = (
         df.groupby("electro_nombre").agg(
@@ -53,10 +53,14 @@ def electroEstadisticas():
         ).reset_index().sort_values("visitas", ascending=False).reset_index(drop=True)
     )
 
-    rank["porcentaje"] = (rank["visitas"] / tEventos * 100).round(2)
+    rank["porcentaje"] = (rank["visitas"] / tRecargas * 100).round(2)
 
-    print(f"\n  Total de eventos de recarga simulados: {tEventos:,}\n")
-    print(f"  {'#':<4} {'Electrolinera':<42} {'Visitas':>8} {'%':>7} {'Dist prom':>10} {'Bat. prom':>10} {'Km rest':>8}")
+    print(f"\n  Numero de veces que se recargó: {tRecargas:,}\n")
+    
+    
+    print(rank)
+    
+    '''print(f"  {'#':<4} {'Electrolinera':<42} {'Visitas':>8} {'%':>7} {'Dist prom':>10} {'Bat. prom':>10} {'Km rest':>8}")
     print(f"  {'-'*4} {'-'*42} {'-'*8} {'-'*7} {'-'*10} {'-'*10} {'-'*8}")
 
     for i, fila in rank.iterrows():
@@ -70,7 +74,7 @@ def electroEstadisticas():
             f"{fila['km_rest_prom']:>7.2f}km"
         )
 
-    print("\n")
+    print("\n")'''
     return rank
 
 
@@ -162,7 +166,7 @@ def estadisticas_detalle_electrolineras():
     if df is None:
         return
 
-    tEventos = len(df)
+    tRecargas = len(df)
 
     print("=" * 60)
     print("   DETALLE POR ELECTROLINERA")
@@ -180,7 +184,7 @@ def estadisticas_detalle_electrolineras():
 
         grupo = df[df["electro_nombre"] == electro]
         visitas = len(grupo)
-        pct     = visitas / tEventos * 100
+        pct     = visitas / tRecargas * 100
 
         dist_prom = grupo["dist_electro_km"].mean()
         dist_min  = grupo["dist_electro_km"].min()
