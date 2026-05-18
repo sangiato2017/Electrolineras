@@ -1,0 +1,3 @@
+﻿evento_id,viaje_id,carro_modelo,autonomia_km,origen_nombre,destino_nombre,evento_nodo,evento_lat,evento_lon,bateria_pct,km_restantes,electro_id,electro_nombre,electro_nodo,electro_lat,electro_lon,dist_electro_km
+1,28,BYD DOLPHIN SURF 30 kWh Active,190.0,UIS Campus Central,UIS Parque Tecnológico Guatiguará,1197337231,6.994904,-73.078364,19.89,37.7831,4,Estacion de Servicio Terpel de Piedecuesta,9602033008,6.998348410998912,-73.05270638323637,3.9112
+2,46,BYD SEAL 82.5 kWh RWD Design,455.0,UIS Campus Central,UIS Parque Tecnológico Guatiguará,599017167,7.03965,-73.090051,19.79,90.0401,3,Centro Comercial Canaveral,4703451524,7.070722605372017,-73.10545322620052,7.7883
