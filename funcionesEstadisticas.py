@@ -4,91 +4,62 @@ import pandas as pd
 
 SALIDA = "amb"
 
-# ─────────────────────────────────────────────
-#  Utilidades
-# ─────────────────────────────────────────────
 
-def get_ultimo_registro():
-    """
-    Devuelve la ruta del archivo de registros más reciente en amb/.
-    Busca registros.csv, registros(1).csv, registros(2).csv, etc.
-    Retorna None si no existe ninguno.
-    """
-    patron = os.path.join(SALIDA, "registros*.csv")
-    archivos = glob.glob(patron)
+def ulimoReg():
 
-    if not archivos:
-        print("[-] No se encontraron archivos de registros en la carpeta amb/")
-        return None
+    buscar = os.path.join(SALIDA, "registros*.csv")
+    archivo = glob.glob(buscar)
 
-    # Ordenar por fecha de modificación (el más reciente al final)
-    archivos.sort(key=os.path.getmtime)
-    ultimo = archivos[-1]
+    archivo.sort(key=os.path.getmtime)
+    ultimo = archivo[-1]
     print(f"[+] Usando archivo: {ultimo}")
     return ultimo
 
 
-def cargar_registros():
-    """
-    Carga el último archivo de registros como DataFrame.
-    Retorna None si no hay archivos o si ocurre un error.
-    """
-    ruta = get_ultimo_registro()
-    if ruta is None:
-        return None
-
+def cargaReg():
+    
+    ruta = ulimoReg()
+    
     try:
         df = pd.read_csv(ruta, encoding="utf-8-sig")
+        
         print(f"[+] {len(df):,} eventos cargados\n")
+        
         return df
-    except Exception as e:
-        print(f"[-] Error al leer {ruta}: {e}")
+    except ValueError:
+        
+        print(f"[-] Error al leer {ruta}")
         return None
 
 
-# ─────────────────────────────────────────────
-#  Estadísticas
-# ─────────────────────────────────────────────
-
-def estadisticas_electrolineras():
-    """
-    Muestra un ranking de las electrolineras más visitadas con:
-      - Total de visitas
-      - Porcentaje del total
-      - Distancia promedio desde la que se solicitó la recarga
-      - Batería promedio al llegar
-      - Km restantes promedio al llegar
-    """
-    df = cargar_registros()
-    if df is None:
-        return
-
-    print("=" * 60)
+def electroEstadisticas():
+    
+    df = cargaReg()
+    
+    print("=" * 40)
     print("   ESTADÍSTICAS DE ELECTROLINERAS MÁS VISITADAS")
-    print("=" * 60)
+    print("=" * 40)
 
-    total_eventos = len(df)
+    tEventos = len(df)
 
-    ranking = (
-        df.groupby("electro_nombre")
-        .agg(
-            visitas        = ("evento_id",       "count"),
-            dist_prom_km   = ("dist_electro_km", "mean"),
-            bateria_prom   = ("bateria_pct",     "mean"),
-            km_rest_prom   = ("km_restantes",    "mean"),
-        )
-        .reset_index()
-        .sort_values("visitas", ascending=False)
-        .reset_index(drop=True)
+    rank = (
+        df.groupby("electro_nombre").agg(
+            
+            visitas = ("evento_id", "count"),
+            dist_prom_km = ("dist_electro_km", "mean"),
+            bateria_prom = ("bateria_pct", "mean"),
+            km_rest_prom = ("km_restantes", "mean"),
+            
+        ).reset_index().sort_values("visitas", ascending=False).reset_index(drop=True)
     )
 
-    ranking["porcentaje"] = (ranking["visitas"] / total_eventos * 100).round(2)
+    rank["porcentaje"] = (rank["visitas"] / tEventos * 100).round(2)
 
-    print(f"\n  Total de eventos de recarga simulados: {total_eventos:,}\n")
+    print(f"\n  Total de eventos de recarga simulados: {tEventos:,}\n")
     print(f"  {'#':<4} {'Electrolinera':<42} {'Visitas':>8} {'%':>7} {'Dist prom':>10} {'Bat. prom':>10} {'Km rest':>8}")
     print(f"  {'-'*4} {'-'*42} {'-'*8} {'-'*7} {'-'*10} {'-'*10} {'-'*8}")
 
-    for i, fila in ranking.iterrows():
+    for i, fila in rank.iterrows():
         print(
             f"  {i+1:<4} "
             f"{fila['electro_nombre']:<42} "
@@ -100,7 +71,7 @@ def estadisticas_electrolineras():
         )
 
     print("\n")
-    return ranking
+    return rank
 
 
 def estadisticas_por_modelo():
@@ -108,7 +79,7 @@ def estadisticas_por_modelo():
     Muestra cuántos eventos de recarga tuvo cada modelo de vehículo
     y la electrolinera más frecuentada por cada uno.
     """
-    df = cargar_registros()
+    df = cargaReg()
     if df is None:
         return
 
@@ -138,7 +109,7 @@ def top_n_electrolineras(n=3):
     Parámetros:
         n (int): cuántas electrolineras mostrar (por defecto 3)
     """
-    df = cargar_registros()
+    df = cargaReg()
     if df is None:
         return
 
@@ -161,7 +132,7 @@ def top_n_electrolineras(n=3):
 
 
 def guardar_estadisticas(ruta):
-    df = cargar_registros()
+    df = cargaReg()
     
     resumen = df.groupby("electro_nombre").agg(
         visitas        = ("evento_id",       "count"),
@@ -187,11 +158,11 @@ def estadisticas_detalle_electrolineras():
       - Modelo de vehículo que más la visitó
       - Ruta más frecuente que terminó en ella (origen → destino)
     """
-    df = cargar_registros()
+    df = cargaReg()
     if df is None:
         return
 
-    total_eventos = len(df)
+    tEventos = len(df)
 
     print("=" * 60)
     print("   DETALLE POR ELECTROLINERA")
@@ -209,7 +180,7 @@ def estadisticas_detalle_electrolineras():
 
         grupo = df[df["electro_nombre"] == electro]
         visitas = len(grupo)
-        pct     = visitas / total_eventos * 100
+        pct     = visitas / tEventos * 100
 
         dist_prom = grupo["dist_electro_km"].mean()
         dist_min  = grupo["dist_electro_km"].min()
@@ -247,12 +218,12 @@ def mostrar_estadisticas():
     """
     Ejecuta y muestra todas las estadísticas disponibles:
       1. Top 3 electrolineras (podio visual)
-      2. Ranking completo de electrolineras
+      2. rank completo de electrolineras
       3. Detalle individual por cada electrolinera
       4. Estadísticas por modelo de vehículo
     """
     top_n_electrolineras(n=3)
-    estadisticas_electrolineras()
+    electroEstadisticas()
     estadisticas_detalle_electrolineras()
     estadisticas_por_modelo()
     
