@@ -510,7 +510,7 @@ def simulacion(n, df_puntos, df_electro, df_carros, G, umbral_pct=20.0):
 
     return pd.DataFrame(registros)
 
-def get_filename(name, ext):
+def filename(name, ext):
     filename = f"{name}.{ext}"
     sal = os.path.join(SALIDA, filename)
     if not os.path.exists(sal):

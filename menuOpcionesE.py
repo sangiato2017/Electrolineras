@@ -24,18 +24,18 @@ n = 0
 def mostrar_menu(G):
     
     estado_grafo = "[OK]" if G is not None else "[no cargado]"
-    print("\n" + "="*40 + "\n")
+    print("\n" + "="*60 + "\n")
     print("SISTEMA DE GESTIÓN DE ELECTROLINERAS")
-    print("\n" + "="*40 + "\n" )
+    print("\n" + "="*60 + "\n" )
     print(f"  Red vial: {estado_grafo}")
-    print("\n" + "="*40 + "\n" )
+    print("\n" + "="*60 + "\n" )
     print("1 |Cargar datos de la red vial de la ciudad")
     print("2 |Configurar parametros para la simulación de recorridos")
     print("3 |Ejecutar simulación de recorridos")
     print("4 |Mostrar estadisticas y resultados")
     print("5 |Sugerir electrolineras")
     print("6 |Salir")
-    print("\n" + "="*40)
+    print("\n" + "="*60)
 
 def simularProceso(seg, mns):
     print(f"\n{mns}", end = "")
@@ -144,18 +144,18 @@ def opcion_3():
     global n, df_puntos, df_electro, carros, G
     
     dfreg = fp.simulacion(n, df_puntos, df_electro, carros, G)
-    name = fp.get_filename("registros","csv")
+    name = fp.filename("registros","csv")
     fp.guardar(dfreg, name)
     print(f"registros guardados como: {name}")
     
 def opcion_4():
-    fe.mostrar_estadisticas()
-    name = fp.get_filename("estadistica", "csv")
-    fe.guardar_estadisticas(name)
+    fe.mostrarE()
+    name = fp.filename("estadistica", "csv")
+    fe.guardaEstadistic(name)
     
 def opcion_5():
     
-    df_reg    = fe.cargar_registros()
+    df_reg    = fe.cargaReg()
     df_electro = listdf[1]  
     
     n = enteroPosi("\n¿Cuántas nuevas electrolineras sugerir? ")
