@@ -17,10 +17,10 @@ def distanciaEuclidianaKm(lat1, lon1, lat2, lon2):
     return R * 2 * np.arcsin(np.sqrt(a))
 
 
-def distanciaElectrolinearMasCercana(lat, lon, dfElectro):
+def distanciaAElectrolinerasMasCercana(lat, lon, dfElectro):
     minDist = float("inf")
-    for _, electro in dfElectro.iterrows():
-        d = distanciaEuclidianaKm(lat, lon, electro["lat"], electro["lon"])
+    for _, e in dfElectro.iterrows():
+        d = distanciaEuclidianaKm(lat, lon, e["lat"], e["lon"])
         if d < minDist:
             minDist = d
     return round(minDist, 4)
@@ -32,7 +32,7 @@ def sugerirElectrolineras(dfRegistros, dfElectro, nSugerencias=3):
 
     dfRegistros = dfRegistros.copy()
     dfRegistros["dist_existente_km"] = dfRegistros.apply(
-        lambda r: distanciaElectrolinearMasCercana(r["evento_lat"], r["evento_lon"], dfElectro),
+        lambda r: distanciaAElectrolinerasMasCercana(r["evento_lat"], r["evento_lon"], dfElectro),
         axis=1,
     )
 
@@ -60,7 +60,8 @@ def sugerirElectrolineras(dfRegistros, dfElectro, nSugerencias=3):
         lonSug = zona["evento_lon"].mean()
 
         distPromExistente = zona["dist_existente_km"].mean()
-        distCentroide = distanciaElectrolinearMasCercana(latSug, lonSug, dfElectro)
+
+        distCentroide = distanciaAElectrolinerasMasCercana(latSug, lonSug, dfElectro)
 
         modeloTop = zona["carro_modelo"].value_counts().idxmax()
         electroTop = zona["electro_nombre"].value_counts().idxmax()
@@ -85,14 +86,14 @@ def sugerirElectrolineras(dfRegistros, dfElectro, nSugerencias=3):
 
     print(f"  {'Zona':<6} {'Eventos':>8} {'%':>6} {'Dist electro exist':>20} {'Lat':>10} {'Lon':>10}")
     print(f"  {'─'*6} {'─'*8} {'─'*6} {'─'*20} {'─'*10} {'─'*10}")
-    for _, fila in dfSug.iterrows():
+    for _, f in dfSug.iterrows():
         print(
-            f"  {int(fila['zona']):<6} "
-            f"{fila['eventos']:>8,} "
-            f"{fila['porcentaje']:>5.1f}% "
-            f"{fila['dist_electro_exist_km']:>18.2f} km "
-            f"{fila['lat_sugerida']:>10.6f} "
-            f"{fila['lon_sugerida']:>10.6f}"
+            f"  {int(f['zona']):<6} "
+            f"{f['eventos']:>8,} "
+            f"{f['porcentaje']:>5.1f}% "
+            f"{f['dist_electro_exist_km']:>18.2f} km "
+            f"{f['lat_sugerida']:>10.6f} "
+            f"{f['lon_sugerida']:>10.6f}"
         )
 
     rutaCsv = os.path.join(SALIDA, "sugerencias_electrolineras.csv")

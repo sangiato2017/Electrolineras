@@ -5,20 +5,20 @@ import pandas as pd
 SALIDA = "amb"
 
 
-def ultimoRegistro():
+def ultimoReg():
     buscar = os.path.join(SALIDA, "registros*.csv")
-    archivos = glob.glob(buscar)
-    archivos.sort(key=os.path.getmtime)
-    ultimo = archivos[-1]
+    archivo = glob.glob(buscar)
+    archivo.sort(key=os.path.getmtime)
+    ultimo = archivo[-1]
     print(f"[+] Usando archivo: {ultimo}")
     return ultimo
 
 
-def cargarRegistro():
-    ruta = ultimoRegistro()
+def cargaReg():
+    ruta = ultimoReg()
     try:
         df = pd.read_csv(ruta, encoding="utf-8-sig")
-        print(f"[+] {len(df):,} recargas cargadas\n")
+        print(f"[+] {len(df):,} recargas cargados\n")
         return df
     except ValueError:
         print(f"[-] Error al leer {ruta}")
@@ -26,48 +26,46 @@ def cargarRegistro():
 
 
 def electroEstadisticas():
-    df = cargarRegistro()
+    df = cargaReg()
 
     print("=" * 60)
     print("   ESTADÍSTICAS DE ELECTROLINERAS MÁS VISITADAS")
     print("=" * 60)
 
-    totalRecargas = len(df)
+    tRecargas = len(df)
 
-    ranking = (
+    rank = (
         df.groupby("electro_nombre").agg(
             visitas=("electro_id", "count"),
             distPromKm=("dist_electro_km", "mean"),
             bateriaProm=("bateria_pct", "mean"),
-            kmRestantesProm=("km_restantes", "mean"),
-        ).reset_index()
-        .sort_values("visitas", ascending=False)
-        .reset_index(drop=True)
+            kmRestProm=("km_restantes", "mean"),
+        ).reset_index().sort_values("visitas", ascending=False).reset_index(drop=True)
     )
 
-    ranking["traficoEnE"] = (ranking["visitas"] / totalRecargas * 100).round(2)
+    rank["traficoEnE"] = (rank["visitas"] / tRecargas * 100).round(2)
 
-    print(f"\n  Numero de veces que se recargó: {totalRecargas:,}\n")
-    print(ranking)
+    print(f"\n  Numero de veces que se recargó: {tRecargas:,}\n")
+    print(rank)
     print("\n")
-    return ranking
+    return rank
 
 
-def estadisticasCarro():
-    df = cargarRegistro()
+def estadistiCarro():
+    df = cargaReg()
 
     print("=" * 60)
     print("   ESTADÍSTICAS POR MODELO DE VEHÍCULO")
     print("=" * 60)
 
-    for modelo, grupo in df.groupby("carro_modelo"):
-        total = len(grupo)
-        electroTop = grupo["electro_nombre"].value_counts().idxmax()
-        visitasTop = grupo["electro_nombre"].value_counts().max()
-        batProm = grupo["bateria_pct"].mean()
-        distProm = grupo["dist_electro_km"].mean()
+    for m, g in df.groupby("carro_modelo"):
+        total = len(g)
+        electroTop = g["electro_nombre"].value_counts().idxmax()
+        visitasTop = g["electro_nombre"].value_counts().max()
+        batProm = g["bateria_pct"].mean()
+        distProm = g["dist_electro_km"].mean()
 
-        print(f"\n  Modelo: {modelo}")
+        print(f"\n  Modelo: {m}")
         print(f"  Recargas: {total:,}")
         print(f"  Bat. prom  : {batProm:.1f}% al solicitar recarga")
         print(f"  Dist. prom : {distProm:.2f} km a la electrolinera")
@@ -77,7 +75,7 @@ def estadisticasCarro():
 
 
 def topElectrolineras(n=3):
-    df = cargarRegistro()
+    df = cargaReg()
 
     total = len(df)
     top = df["electro_nombre"].value_counts().head(n)
@@ -94,8 +92,8 @@ def topElectrolineras(n=3):
     print("\n")
 
 
-def guardarEstadisticas(ruta):
-    df = cargarRegistro()
+def guardaEstadistic(ruta):
+    df = cargaReg()
 
     resumen = df.groupby("electro_nombre").agg(
         visitas=("evento_id", "count"),
@@ -109,8 +107,8 @@ def guardarEstadisticas(ruta):
 
 
 def estadisticasElectricas():
-    df = cargarRegistro()
-    totalRecargas = len(df)
+    df = cargaReg()
+    tRecargas = len(df)
 
     print("=" * 60)
     print("   DETALLE POR ELECTROLINERA")
@@ -118,10 +116,10 @@ def estadisticasElectricas():
 
     electrosOrdenadas = df["electro_nombre"].value_counts().index.tolist()
 
-    for nombreElectro in electrosOrdenadas:
-        grupo = df[df["electro_nombre"] == nombreElectro]
+    for e in electrosOrdenadas:
+        grupo = df[df["electro_nombre"] == e]
         visitas = len(grupo)
-        pct = visitas / totalRecargas * 100
+        pct = visitas / tRecargas * 100
 
         distProm = grupo["dist_electro_km"].mean()
         distMin = grupo["dist_electro_km"].min()
@@ -136,26 +134,25 @@ def estadisticasElectricas():
         modeloTop = grupo["carro_modelo"].value_counts().idxmax()
         visitasMod = grupo["carro_modelo"].value_counts().max()
 
-        grupo = grupo.copy()
         grupo["ruta"] = grupo["origen_nombre"] + " → " + grupo["destino_nombre"]
         rutaTop = grupo["ruta"].value_counts().idxmax()
-        rutaFrecuente = grupo["ruta"].value_counts().max()
+        rutaFrec = grupo["ruta"].value_counts().max()
 
         print(f"\n  {'─'*56}")
-        print(f"  {nombreElectro}")
+        print(f"  {e}")
         print(f"  {'─'*56}")
         print(f"  Visitas: {visitas:,}  ({pct:.1f}%) ")
         print(f"  Distancia: prom {distProm:.2f} km  |  min {distMin:.2f} km  |  max {distMax:.2f} km")
         print(f"  Batería: prom {batProm:.1f}%   |  min {batMin:.1f}%   |  max {batMax:.1f}%")
         print(f"  Km restantes: prom {kmProm:.2f} km al solicitar recarga")
         print(f"  Vehículo top: {modeloTop} ({visitasMod} visitas)")
-        print(f"  Ruta frecuente: {rutaTop} ({rutaFrecuente}x)")
+        print(f"  Ruta frecuente: {rutaTop} ({rutaFrec}x)")
 
     print(f"\n  {'─'*56}\n")
 
 
-def mostrarEstadisticas():
+def mostrarE():
     topElectrolineras(n=3)
     electroEstadisticas()
     estadisticasElectricas()
-    estadisticasCarro()
+    estadistiCarro()

@@ -15,9 +15,13 @@ CIUDADES = [
 ]
 
 TIPO = "drive"
+
 SALIDA = "amb"
+
 PUNTOS_CLAVE = []
+
 ELECTROLINERAS = []
+
 CARROS = []
 
 os.makedirs(SALIDA, exist_ok=True)
@@ -31,7 +35,7 @@ def puntosClave(nombre, lat, lon):
         "lon": lon
     })
 
-def electrolineras(nombre, lat, lon):
+def agregarElectrolinera(nombre, lat, lon):
     ELECTROLINERAS.append({
         "id": len(ELECTROLINERAS) + 1,
         "nombre": nombre,
@@ -39,11 +43,11 @@ def electrolineras(nombre, lat, lon):
         "lon": lon
     })
 
-def infoCarro(modelo, cBateria, autonomia, potencia):
+def infoCarro(modelo, cBatery, autonomia, potencia):
     CARROS.append({
         "id": len(CARROS) + 1,
         "modelo": modelo,
-        "cbateria": cBateria,
+        "cbateria": cBatery,
         "autonomia": autonomia,
         "potencia": potencia
     })
@@ -52,27 +56,27 @@ def guardar(df, ruta):
     df.to_csv(ruta, index=False, encoding="utf-8-sig")
 
 
-puntosClave("UIS Campus Central",                       7.138910870846234,  -73.12032665780893)
-puntosClave("UIS Campus Florida",                       7.061655811364763,  -73.08857057324246)
-puntosClave("UIS Parque Tecnológico Guatiguará",        6.994784145580453,  -73.06667862587386)
-puntosClave("UIS Campus Bucarica (Centro)",             7.12103758498896,   -73.12316849078937)
-puntosClave("CENFER",                                   7.0825389469325275, -73.15430831704738)
-puntosClave("UNAB",                                     7.117167340341574,  -73.10527508962832)
-puntosClave("UTS (Unidades Tecnológicas de Santander)", 7.105157239184978,  -73.12385424317661)
-puntosClave("Universidad Pontificia Bolivariana UPB",   7.03935832884894,   -73.07256052223526)
-puntosClave("PTAR Río Frío",                            7.065755983770025,  -73.12805114126374)
-puntosClave("Sede Recreacional Catay",                  6.976343071508123,  -73.04130608532574)
+puntosClave("UIS Campus Central", 7.138910870846234, -73.12032665780893)
+puntosClave("UIS Campus Florida", 7.061655811364763, -73.08857057324246)
+puntosClave("UIS Parque Tecnológico Guatiguará", 6.994784145580453, -73.06667862587386)
+puntosClave("UIS Campus Bucarica (Centro)", 7.12103758498896, -73.12316849078937)
+puntosClave("CENFER", 7.0825389469325275, -73.15430831704738)
+puntosClave("UNAB", 7.117167340341574, -73.10527508962832)
+puntosClave("UTS (Unidades Tecnológicas de Santander)", 7.105157239184978, -73.12385424317661)
+puntosClave("Universidad Pontificia Bolivariana UPB", 7.03935832884894, -73.07256052223526)
+puntosClave("PTAR Río Frío", 7.065755983770025, -73.12805114126374)
+puntosClave("Sede Recreacional Catay", 6.976343071508123, -73.04130608532574)
 
-electrolineras("Homecenter",                                7.115794947043329, -73.12049190407198)
-electrolineras("Centro Comercial Quinta Etapa",             7.115473864260488, -73.10771498564486)
-electrolineras("Centro Comercial Cacique",                  7.099383171372943, -73.10738728564714)
-electrolineras("Centro Comercial Canaveral",                7.070722605372017, -73.10545322620052)
-electrolineras("Estacion de Servicio Terpel de Piedecuesta",6.998348410998912, -73.05270638323637)
-electrolineras("Éxito de la Rosita",                        7.113534997127967, -73.12309979445544)
-electrolineras("Centro Comercial la Florida",               7.070730036568059, -73.10553799907328)
-electrolineras("Promotores del Oriente (vía a Girón)",      7.085743648912543, -73.16471385719439)
+agregarElectrolinera("Homecenter", 7.115794947043329, -73.12049190407198)
+agregarElectrolinera("Centro Comercial Quinta Etapa", 7.115473864260488, -73.10771498564486)
+agregarElectrolinera("Centro Comercial Cacique", 7.099383171372943, -73.10738728564714)
+agregarElectrolinera("Centro Comercial Canaveral", 7.070722605372017, -73.10545322620052)
+agregarElectrolinera("Estacion de Servicio Terpel de Piedecuesta", 6.998348410998912, -73.05270638323637)
+agregarElectrolinera("Éxito de la Rosita", 7.113534997127967, -73.12309979445544)
+agregarElectrolinera("Centro Comercial la Florida", 7.070730036568059, -73.10553799907328)
+agregarElectrolinera("Promotores del Oriente (vía a Girón)", 7.085743648912543, -73.16471385719439)
 
-infoCarro("BYD SEAL 82.5 kWh RWD Design",   84.0, 455, 172)
+infoCarro("BYD SEAL 82.5 kWh RWD Design", 84.0, 455, 172)
 infoCarro("BYD DOLPHIN SURF 30 kWh Active", 32.0, 190, 158)
 
 dfp = pd.DataFrame(PUNTOS_CLAVE)
@@ -80,7 +84,7 @@ dfe = pd.DataFrame(ELECTROLINERAS)
 dfc = pd.DataFrame(CARROS)
 
 
-def descargarMapa():
+def descMapa():
     print("\nDescargando mapa... \n")
     grafos = []
     for ciudad in CIUDADES:
@@ -92,16 +96,16 @@ def descargarMapa():
             print("[-] Hubo un error al descargar el grafo ")
 
     if len(grafos) > 1:
-        grafoCombinado = grafos[0]
+        Gmix = grafos[0]
         for g in grafos[1:]:
-            grafoCombinado = nx.compose(grafoCombinado, g)
+            Gmix = nx.compose(Gmix, g)
     else:
         print("Solo se descargó un grafo correctamente... ")
-        grafoCombinado = grafos[0]
+        Gmix = grafos[0]
 
-    return grafoCombinado
+    return Gmix
 
-def guardarMapa(G):
+def guarMapa(G):
     print("\n[+] Guardando mapa...")
     ruta = os.path.join(SALIDA, "mapa.graphml")
     ox.save_graphml(G, filepath=ruta)
@@ -113,7 +117,7 @@ def cargarMapa(ruta):
     print("[+] Mapa cargado")
     return G
 
-def cargarDf(ruta):
+def cargaDf(ruta):
     print(f"[+] Cargando {ruta.split('/')[1]}")
     df = pd.read_csv(ruta)
     print(f"[+] {ruta.split('/')[1]} Cargado con exito")
@@ -121,58 +125,60 @@ def cargarDf(ruta):
 
 def nodosCerca(G, puntos):
     reg = []
-    for i, punto in puntos.iterrows():
-        nodoId, dist = ox.nearest_nodes(
+    for i, j in puntos.iterrows():
+        nodid, dist = ox.nearest_nodes(
             G,
-            X=punto["lon"],
-            Y=punto["lat"],
+            X=j["lon"],
+            Y=j["lat"],
             return_dist=True
         )
-        datosNodo = G.nodes[nodoId]
+        dNodo = G.nodes[nodid]
         reg.append({
             "id": i,
-            "nombre": punto["nombre"],
-            "lat_original": punto["lat"],
-            "lon_original": punto["lon"],
-            "nodo_red": nodoId,
-            "lat_nodo": datosNodo["y"],
-            "lon_nodo": datosNodo["x"],
+            "nombre": j["nombre"],
+            "lat_original": j["lat"],
+            "lon_original": j["lon"],
+            "nodo_red": nodid,
+            "lat_nodo": dNodo["y"],
+            "lon_nodo": dNodo["x"],
             "dist_al_nodo_m": round(dist, 2)
         })
-    return pd.DataFrame(reg)
+    dfReg = pd.DataFrame(reg)
+    return dfReg
 
 def cargaDescarga():
     archivosSalida = [
-        ["puntosclave.csv",    dfp],
+        ["puntosclave.csv", dfp],
         ["electrolineras.csv", dfe],
-        ["carros.csv",         dfc]
+        ["carros.csv", dfc]
     ]
 
-    print("\nArchivos de ubicaciones .csv:\n")
+    print("\nArchivos de ubicacioes .csv:\n")
     dfCargados = []
-    for nombre, dfLocal in archivosSalida:
+    for nombre, dataframe in archivosSalida:
         ruta = os.path.join(SALIDA, nombre)
         if os.path.exists(ruta):
             print(f"\nYa existe el archivo {nombre}")
-            carga = cargarDf(ruta)
+            carga = cargaDf(ruta)
             dfCargados.append(carga)
         else:
-            guardar(dfLocal, ruta)
+            guardar(dataframe, ruta)
             print(f"[+]{nombre} Guardado con exito")
-            dfCargados.append(dfLocal)
+            dfCargados.append(dataframe)
 
-    rutaMapa = os.path.join(SALIDA, "mapa.graphml")
-    if os.path.exists(rutaMapa):
-        print(f"\nYa existe el archivo {rutaMapa.split('/')[1]}")
-        G = cargarMapa(rutaMapa)
+    ruta = os.path.join(SALIDA, "mapa.graphml")
+    if os.path.exists(ruta):
+        print(f"\nYa existe el archivo {ruta.split('/')[1]}")
+        G = cargarMapa(ruta)
     else:
-        G = descargarMapa()
-        guardarMapa(G)
+        G = descMapa()
+        guarMapa(G)
 
     dfCombinado = pd.concat(dfCargados[:-1], ignore_index=True)
     dfCombinado["id"] = range(1, len(dfCombinado) + 1)
 
-    return [G, dfCargados, dfCombinado]
+    listaSalida = [G, dfCargados, dfCombinado]
+    return listaSalida
 
 
 def ver(G):
@@ -199,6 +205,7 @@ def ver(G):
     plt.close()
     print("\n[+] mapa guardado con exito ")
 
+
 def verMejor(df, ruta):
     centroLat = df["lat_original"].mean()
     centroLon = df["lon_original"].mean()
@@ -217,6 +224,7 @@ def verMejor(df, ruta):
     print("\nGenerando mapa interactivo")
     for _, fila in df.iterrows():
         color = coloresFolium[(fila["id"] - 1) % len(coloresFolium)]
+
         popupHtml = f"""
         <div style='font-family:sans-serif; min-width:200px'>
             <b style='font-size:14px'>{fila['id']}. {fila['nombre']}</b><br><br>
@@ -228,6 +236,7 @@ def verMejor(df, ruta):
             <b>Distancia al nodo:</b> {fila['dist_al_nodo_m']} m
         </div>
         """
+
         folium.Marker(
             location=[fila["lat_original"], fila["lon_original"]],
             popup=folium.Popup(popupHtml, max_width=280),
@@ -259,7 +268,7 @@ def verMejor(df, ruta):
     m.save(ruta)
     print(f"Mapa interactivo guardado como {ruta.split('/')[1]}")
 
-def cargarMapaInteractivo(df, ruta):
+def cargaMapaI(df, ruta):
     if os.path.exists(ruta):
         print("\n[+] Ya existe el mapa interactivo")
     else:
@@ -278,17 +287,17 @@ def electroCercana(G, nActual, dfElectro):
     mejor = None
     mejorDist = float("inf")
 
-    for i, electro in dfElectro.iterrows():
-        nodoE = electro["nodo_red"]
+    for i, j in dfElectro.iterrows():
+        nodoE = j["nodo_red"]
         dist = distancia(G, nActual, nodoE)
         if dist is not None and dist < mejorDist:
             mejorDist = dist
-            mejor = electro
+            mejor = j
 
     if mejor is None:
         return None
 
-    return {
+    diccio = {
         "electro_id": mejor.name,
         "electro_nombre": mejor["nombre"],
         "electro_nodo": mejor["nodo_red"],
@@ -296,6 +305,8 @@ def electroCercana(G, nActual, dfElectro):
         "electro_lon": mejor["lon_original"],
         "dist_electro_km": round(mejorDist, 4),
     }
+
+    return diccio
 
 def simulacion(n, dfPuntos, dfElectro, dfCarros, G, umbralPct=20.0):
     registros = []
@@ -394,11 +405,8 @@ def simulacion(n, dfPuntos, dfElectro, dfCarros, G, umbralPct=20.0):
                         **resultado,
                     })
 
-                    print(
-                        f"  [{sum(eventosPorVehiculo.values())}/{totalObjetivo}] "
-                        f"{v['modelo'][:15]}: {eventosPorVehiculo[v['modelo']]}/{n}",
-                        flush=True
-                    )
+                    print(f"  [{sum(eventosPorVehiculo.values())}/{totalObjetivo}] "
+                          f"{v['modelo'][:15]}: {eventosPorVehiculo[v['modelo']]}/{n}", flush=True)
 
                     v["bateria_actual"] = 100.0
                     v["origen_id"] = destinoId
@@ -420,14 +428,14 @@ def simulacion(n, dfPuntos, dfElectro, dfCarros, G, umbralPct=20.0):
 
 def filename(name, ext):
     nombreArchivo = f"{name}.{ext}"
-    salida = os.path.join(SALIDA, nombreArchivo)
-    if not os.path.exists(salida):
-        return salida
+    sal = os.path.join(SALIDA, nombreArchivo)
+    if not os.path.exists(sal):
+        return sal
 
     n = 1
     while True:
         nombreArchivo = f"{name}({n}).{ext}"
-        salida = os.path.join(SALIDA, nombreArchivo)
-        if not os.path.exists(salida):
-            return salida
+        sal = os.path.join(SALIDA, nombreArchivo)
+        if not os.path.exists(sal):
+            return sal
         n += 1

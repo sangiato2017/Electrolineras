@@ -9,7 +9,7 @@ import matplotlib as plt
 
 import funcionesPreparacion as fp
 import funcionesEstadisticas as fe
-import funcionesClustering as fc
+import funcionesclustering as fc
 
 G = None
 df = None
@@ -35,8 +35,8 @@ def mostrarMenu(G):
     print("6 |Salir")
     print("\n" + "="*60)
 
-def simularProceso(seg, mensaje):
-    print(f"\n{mensaje}", end="")
+def simularProceso(seg, mns):
+    print(f"\n{mns}", end="")
     pts = 5
     timePts = seg / pts
     for i in range(pts):
@@ -50,8 +50,8 @@ def simularProceso(seg, mensaje):
 
 def errorSalida():
     seg = 1
-    mensaje = "Regresando al menú principal"
-    print(f"\n{mensaje}", end="")
+    mns = "Regresando al menú principal"
+    print(f"\n{mns}", end="")
     pts = 3
     timePts = seg / pts
     for i in range(pts):
@@ -59,32 +59,32 @@ def errorSalida():
         print(".", end="")
         sys.stdout.flush()
 
-def enteroPositivo(mensaje):
+def enteroPosi(me):
     while True:
-        entrada = input(mensaje)
+        ent = input(me)
         try:
-            num = int(entrada)
+            num = int(ent)
             if num > 0:
                 return num
             else:
                 print("\n[-] Error: el numero debe ser mayor a 0.")
         except ValueError:
-            print(f"\n[-] Error: {entrada} no es un numero valido.")
+            print(f"\n[-] Error: {ent} no es un numero valido.")
 
-def floatPositivo(mensaje):
+def floatPosi(me):
     while True:
-        entrada = input(mensaje)
+        ent = input(me)
         try:
-            num = float(entrada)
+            num = float(ent)
             if num > 0 and num <= 100:
                 return num
             else:
                 print("\n[-] Error: el numero debe estar entre 0 y 1.")
         except ValueError:
-            print(f"\n[-] Error: {entrada} no es un numero valido.")
+            print(f"\n[-] Error: {ent} no es un numero valido.")
 
-def salida(seg, mensaje):
-    print(f"\n{mensaje}", end="")
+def salida(seg, mns):
+    print(f"\n{mns}", end="")
     pts = 5
     timePts = seg / pts
     for i in range(pts):
@@ -111,10 +111,11 @@ def opcion1():
     dfElectro = nodosFixed.iloc[10:].reset_index(drop=True)
     dfElectro["id"] = range(1, len(dfElectro) + 1)
 
+
 def opcion2():
     global listdf, n
 
-    n = enteroPositivo("\nIngrese el numero de recorridos a simular: ")
+    n = enteroPosi("\nIngrese el numero de recorridos a simular: ")
 
     time.sleep(0.5)
     print(f"\nSe ejecutaran {n} recorridos ")
@@ -136,21 +137,21 @@ def opcion3():
     global n, dfPuntos, dfElectro, carros, G
 
     dfReg = fp.simulacion(n, dfPuntos, dfElectro, carros, G)
-    nombre = fp.filename("registros", "csv")
-    fp.guardar(dfReg, nombre)
-    print(f"registros guardados como: {nombre}")
+    name = fp.filename("registros", "csv")
+    fp.guardar(dfReg, name)
+    print(f"registros guardados como: {name}")
 
 def opcion4():
-    fe.mostrarEstadisticas()
-    nombre = fp.filename("estadistica", "csv")
-    fe.guardarEstadisticas(nombre)
+    fe.mostrarE()
+    name = fp.filename("estadistica", "csv")
+    fe.guardaEstadistic(name)
 
 def opcion5():
-    dfReg = fe.cargarRegistro()
-    dfElectroLocal = listdf[1]
+    dfReg = fe.cargaReg()
+    dfElectro = listdf[1]
 
-    nSug = enteroPositivo("\n¿Cuántas nuevas electrolineras sugerir? ")
-    fc.analisisCompleto(dfReg, dfElectroLocal, nSugerencias=nSug)
+    n = enteroPosi("\n¿Cuántas nuevas electrolineras sugerir? ")
+    fc.analisisCompleto(dfReg, dfElectro, nSugerencias=n)
 
 
 def menuPrincipal():
@@ -159,7 +160,7 @@ def menuPrincipal():
     key = 0
     while True:
         mostrarMenu(G)
-        op = enteroPositivo("\nElija una opcion (1-6): ")
+        op = enteroPosi("\nElija una opcion (1-6): ")
 
         match op:
             case 1:
@@ -179,7 +180,7 @@ def menuPrincipal():
                     opcion3()
                     key = 3
                 else:
-                    print("\n[-] Error: No se han cargado datos o no se han configurado parametros")
+                    print("\n[-] Error: No se han cargado datos o no se an configurado parametros")
                     errorSalida()
 
             case 4:
