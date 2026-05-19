@@ -9,7 +9,7 @@ import matplotlib as plt
 
 import funcionesPreparacion as fp
 import funcionesEstadisticas as fe
-import funcionesclustering as fc
+import funcionesPredic as fc
 
 G = None
 df = None
@@ -147,11 +147,13 @@ def opcion4():
     fe.guardaEstadistic(name)
 
 def opcion5():
-    dfReg = fe.cargaReg()
-    dfElectro = listdf[1]
+    global G, listdf
 
-    n = enteroPosi("\n¿Cuántas nuevas electrolineras sugerir? ")
-    fc.analisisCompleto(dfReg, dfElectro, nSugerencias=n)
+    dfReg = fe.cargaReg()
+    dfElectroOriginal = listdf[1]
+
+    nSug = enteroPosi("\n¿Cuantas nuevas electrolineras sugerir? ")
+    fc.analisisCompleto(G, dfReg, dfElectroOriginal, nSugerencias=nSug)
 
 
 def menuPrincipal():
