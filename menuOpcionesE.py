@@ -7,28 +7,26 @@ import networkx as nx
 import osmnx as ox
 import matplotlib as plt
 
-
 import funcionesPreparacion as fp
 import funcionesEstadisticas as fe
-import funcionesclustering as fc
+import funcionesClustering as fc
 
 G = None
 df = None
-df_P_E = None
-nodosfixed = None
-df_puntos = None
-df_electro = None
+dfPE = None
+nodosFixed = None
+dfPuntos = None
+dfElectro = None
 n = 0
-#============Menú============#
 
-def mostrar_menu(G):
-    
-    estado_grafo = "[OK]" if G is not None else "[no cargado]"
+
+def mostrarMenu(G):
+    estadoGrafo = "[OK]" if G is not None else "[no cargado]"
     print("\n" + "="*60 + "\n")
     print("SISTEMA DE GESTIÓN DE ELECTROLINERAS")
-    print("\n" + "="*60 + "\n" )
-    print(f"  Red vial: {estado_grafo}")
-    print("\n" + "="*60 + "\n" )
+    print("\n" + "="*60 + "\n")
+    print(f"  Red vial: {estadoGrafo}")
+    print("\n" + "="*60 + "\n")
     print("1 |Cargar datos de la red vial de la ciudad")
     print("2 |Configurar parametros para la simulación de recorridos")
     print("3 |Ejecutar simulación de recorridos")
@@ -37,186 +35,175 @@ def mostrar_menu(G):
     print("6 |Salir")
     print("\n" + "="*60)
 
-def simularProceso(seg, mns):
-    print(f"\n{mns}", end = "")
+def simularProceso(seg, mensaje):
+    print(f"\n{mensaje}", end="")
     pts = 5
     timePts = seg / pts
     for i in range(pts):
         time.sleep(timePts)
-        print(".", end = "")
+        print(".", end="")
         sys.stdout.flush()
     time.sleep(seg)
     print("\n\n[+] ¡Completado!")
     time.sleep(seg)
 
-#============Validaciones============#
 
 def errorSalida():
     seg = 1
-    mns = "Regresando al menú principal"
-    print(f"\n{mns}", end = "")
+    mensaje = "Regresando al menú principal"
+    print(f"\n{mensaje}", end="")
     pts = 3
     timePts = seg / pts
     for i in range(pts):
         time.sleep(timePts)
-        print(".", end = "")
+        print(".", end="")
         sys.stdout.flush()
 
-def enteroPosi(me):
+def enteroPositivo(mensaje):
     while True:
-        ent = input(me)
+        entrada = input(mensaje)
         try:
-            num = int(ent)
-            if(num > 0):
+            num = int(entrada)
+            if num > 0:
                 return num
             else:
                 print("\n[-] Error: el numero debe ser mayor a 0.")
         except ValueError:
-            print(f"\n[-] Error: {ent} no es un numero valido.")
+            print(f"\n[-] Error: {entrada} no es un numero valido.")
 
-def floatPosi(me):
+def floatPositivo(mensaje):
     while True:
-        ent = input(me)
+        entrada = input(mensaje)
         try:
-            num = float(ent)
-            if(num > 0 and num <= 100):
+            num = float(entrada)
+            if num > 0 and num <= 100:
                 return num
             else:
                 print("\n[-] Error: el numero debe estar entre 0 y 1.")
         except ValueError:
-            print(f"\n[-] Error: {ent} no es un numero valido.")
+            print(f"\n[-] Error: {entrada} no es un numero valido.")
 
-def salida(seg, mns):
-    print(f"\n{mns}", end = "")
+def salida(seg, mensaje):
+    print(f"\n{mensaje}", end="")
     pts = 5
     timePts = seg / pts
     for i in range(pts):
         time.sleep(timePts)
-        print(".", end = "")
+        print(".", end="")
         sys.stdout.flush()
     time.sleep(seg)
 
 
-#============opciones del menú============#
+def opcion1():
+    global G, listdf, dfPE, nodosFixed, dfPuntos, dfElectro, carros
 
-def opcion_1():
-    
-    global G, listdf, df_P_E, nodosfixed, df_puntos, df_electro, carros
-    
-    variables = fp.carga_descarga()
+    variables = fp.cargaDescarga()
     G = variables[0]
     listdf = variables[1]
-    df_P_E = variables[2]
-    
+    dfPE = variables[2]
+
     carros = listdf[2]
-    
-    nodosfixed = fp.nodos_cerca(G, df_P_E)
-    nodosfixed["id"] = range(1, len(nodosfixed) + 1)
-    
-    
-    df_puntos  = nodosfixed.iloc[:10].reset_index(drop=True)
-    df_electro = nodosfixed.iloc[10:].reset_index(drop=True)
-    df_electro["id"] = range(1, len(df_electro) + 1)
-    
-    
-def opcion_2():
+
+    nodosFixed = fp.nodosCerca(G, dfPE)
+    nodosFixed["id"] = range(1, len(nodosFixed) + 1)
+
+    dfPuntos = nodosFixed.iloc[:10].reset_index(drop=True)
+    dfElectro = nodosFixed.iloc[10:].reset_index(drop=True)
+    dfElectro["id"] = range(1, len(dfElectro) + 1)
+
+def opcion2():
     global listdf, n
-    
-    n = enteroPosi("\nIngrese el numero de recorridos a simular: ")
-    
+
+    n = enteroPositivo("\nIngrese el numero de recorridos a simular: ")
+
     time.sleep(0.5)
     print(f"\nSe ejecutaran {n} recorridos ")
     time.sleep(1)
-    
+
     print("\nPuntos a recorrer:\n")
     puntos = listdf[0]
-    print(puntos[["id","nombre"]].to_string(index=False))
+    print(puntos[["id", "nombre"]].to_string(index=False))
     print("\nElectrolineras:\n")
     electros = listdf[1]
-    print(electros[["id","nombre"]].to_string(index=False))
-    
+    print(electros[["id", "nombre"]].to_string(index=False))
+
     time.sleep(0.5)
     print(f"\nSe ejecutaran {n} recorridos ")
     time.sleep(1)
     return n
-    
-def opcion_3():
-    global n, df_puntos, df_electro, carros, G
-    
-    dfreg = fp.simulacion(n, df_puntos, df_electro, carros, G)
-    name = fp.filename("registros","csv")
-    fp.guardar(dfreg, name)
-    print(f"registros guardados como: {name}")
-    
-def opcion_4():
-    fe.mostrarE()
-    name = fp.filename("estadistica", "csv")
-    fe.guardaEstadistic(name)
-    
-def opcion_5():
-    
-    df_reg    = fe.cargaReg()
-    df_electro = listdf[1]  
-    
-    n = enteroPosi("\n¿Cuántas nuevas electrolineras sugerir? ")
-    fc.analisis_completo(df_reg, df_electro, n_sugerencias=n)
+
+def opcion3():
+    global n, dfPuntos, dfElectro, carros, G
+
+    dfReg = fp.simulacion(n, dfPuntos, dfElectro, carros, G)
+    nombre = fp.filename("registros", "csv")
+    fp.guardar(dfReg, nombre)
+    print(f"registros guardados como: {nombre}")
+
+def opcion4():
+    fe.mostrarEstadisticas()
+    nombre = fp.filename("estadistica", "csv")
+    fe.guardarEstadisticas(nombre)
+
+def opcion5():
+    dfReg = fe.cargarRegistro()
+    dfElectroLocal = listdf[1]
+
+    nSug = enteroPositivo("\n¿Cuántas nuevas electrolineras sugerir? ")
+    fc.analisisCompleto(dfReg, dfElectroLocal, nSugerencias=nSug)
 
 
-#============Principal============#
-def menu_principal():
-    global G, listdf, df_P_E, nodosfixed, df_puntos, df_electro, carros
-    
+def menuPrincipal():
+    global G, listdf, dfPE, nodosFixed, dfPuntos, dfElectro, carros
+
     key = 0
     while True:
-        
-        mostrar_menu(G)
-        op = enteroPosi("\nElija una opcion (1-6): ")
-        
+        mostrarMenu(G)
+        op = enteroPositivo("\nElija una opcion (1-6): ")
+
         match op:
             case 1:
-                opcion_1()
+                opcion1()
                 key = 1
-                
+
             case 2:
-                if(key >= 1):
-                    
-                    n = opcion_2()
+                if key >= 1:
+                    n = opcion2()
                     key = 2
                 else:
-                    print("\n[-] Error: No se han cargado datos" )
+                    print("\n[-] Error: No se han cargado datos")
                     errorSalida()
-                    
+
             case 3:
-                if (key >= 2):
-                    
-                    opcion_3()
+                if key >= 2:
+                    opcion3()
                     key = 3
                 else:
-                    print("\n[-] Error: No se han cargado datos o no se an configurado parametros" )
+                    print("\n[-] Error: No se han cargado datos o no se han configurado parametros")
                     errorSalida()
+
             case 4:
-                if(key >= 3):
-                    
-                    opcion_4()
+                if key >= 3:
+                    opcion4()
                     key = 4
                 else:
-                    print("\n[-] Error: No se han simulado recorridos" )
+                    print("\n[-] Error: No se han simulado recorridos")
                     errorSalida()
+
             case 5:
-                if(key >= 4):
-                    opcion_5()
+                if key >= 4:
+                    opcion5()
                 else:
-                    print("\n[-] Error: No se han simulado recorridos" )
+                    print("\n[-] Error: No se han simulado recorridos")
                     errorSalida()
-                
+
             case 6:
                 salida(0.2, "\nSaliendo")
-                break 
-            
+                break
+
             case _:
                 print("\n[-] Error: Opcion invalida")
                 errorSalida()
-        
 
 
-menu_principal()
+menuPrincipal()
