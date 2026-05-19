@@ -139,6 +139,7 @@ def opcion3():
     dfReg = fp.simulacion(n, dfPuntos, dfElectro, carros, G)
     name = fp.filename("registros", "csv")
     fp.guardar(dfReg, name)
+    
     print(f"registros guardados como: {name}")
 
 def opcion4():
@@ -152,7 +153,7 @@ def opcion5():
     dfReg = fe.cargaReg()
     dfElectroOriginal = listdf[1]
 
-    nSug = enteroPosi("\n¿Cuantas nuevas electrolineras sugerir? ")
+    nSug = enteroPosi("\n¿Cuantas nuevas electrolineras sugerir?: ")
     fc.analisisCompleto(G, dfReg, dfElectroOriginal, nSugerencias=nSug)
 
 
