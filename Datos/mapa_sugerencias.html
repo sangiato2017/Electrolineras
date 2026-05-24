@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_9db012fe00ce5e877bdce1650c34b8f0 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_9db012fe00ce5e877bdce1650c34b8f0" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_9db012fe00ce5e877bdce1650c34b8f0 = L.map(
+                "map_9db012fe00ce5e877bdce1650c34b8f0",
+                {
+                    center: [7.1193, -73.1227],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 12,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_7c001eec6e59cd0ef6ca4605115d7dc6 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_7c001eec6e59cd0ef6ca4605115d7dc6.addTo(map_9db012fe00ce5e877bdce1650c34b8f0);
+        
+    
+            var marker_2e4f9c1ed9ab097af376b7292a385bc3 = L.marker(
+                [7.115794947043329, -73.12049190407198],
+                {
+}
+            ).addTo(map_9db012fe00ce5e877bdce1650c34b8f0);
+        
+    
+            var icon_615e6efd33369bdebe7a004238e5e468 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bolt",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3c48e5d78210d3ca42359020b146b2dc = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_56daf4eb17b1d13aa0e6decd008ba36b = $(`<div id="html_56daf4eb17b1d13aa0e6decd008ba36b" style="width: 100.0%; height: 100.0%;">Homecenter</div>`)[0];
+                popup_3c48e5d78210d3ca42359020b146b2dc.setContent(html_56daf4eb17b1d13aa0e6decd008ba36b);
+            
+        
+
+        marker_2e4f9c1ed9ab097af376b7292a385bc3.bindPopup(popup_3c48e5d78210d3ca42359020b146b2dc)
+        ;
+
+        
+    
+    
+            marker_2e4f9c1ed9ab097af376b7292a385bc3.bindTooltip(
+                `<div>
+                     Homecenter
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2e4f9c1ed9ab097af376b7292a385bc3.setIcon(icon_615e6efd33369bdebe7a004238e5e468);
+            
+    
+            var marker_6eda3f1a718ef33063eca86ce0bb1849 = L.marker(
+                [7.115473864260488, -73.10771498564486],
+                {
+}
+            ).addTo(map_9db012fe00ce5e877bdce1650c34b8f0);
+        
+    
+            var icon_490dd409320fafb9117fab380565b810 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bolt",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_48b215813a5c98a871e9c9a2c5b3d1e6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d5e68f939c8edf7281dffa9954f06d87 = $(`<div id="html_d5e68f939c8edf7281dffa9954f06d87" style="width: 100.0%; height: 100.0%;">Centro Comercial Quinta Etapa</div>`)[0];
+                popup_48b215813a5c98a871e9c9a2c5b3d1e6.setContent(html_d5e68f939c8edf7281dffa9954f06d87);
+            
+        
+
+        marker_6eda3f1a718ef33063eca86ce0bb1849.bindPopup(popup_48b215813a5c98a871e9c9a2c5b3d1e6)
+        ;
+
+        
+    
+    
+            marker_6eda3f1a718ef33063eca86ce0bb1849.bindTooltip(
+                `<div>
+                     Centro Comercial Quinta Etapa
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6eda3f1a718ef33063eca86ce0bb1849.setIcon(icon_490dd409320fafb9117fab380565b810);
+            
+    
+            var marker_2ae86c5bc91dd6292dde4ca534b91fd7 = L.marker(
+                [7.099383171372943, -73.10738728564714],
+                {
+}
+            ).addTo(map_9db012fe00ce5e877bdce1650c34b8f0);
+        
+    
+            var icon_c58a58e004294783c1b3922c8a1d8fbc = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bolt",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bbba0689df91cfc0ba2aa8b94f347a46 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_547d0b9a46b1747eaa9eba487f125a68 = $(`<div id="html_547d0b9a46b1747eaa9eba487f125a68" style="width: 100.0%; height: 100.0%;">Centro Comercial Cacique</div>`)[0];
+                popup_bbba0689df91cfc0ba2aa8b94f347a46.setContent(html_547d0b9a46b1747eaa9eba487f125a68);
+            
+        
+
+        marker_2ae86c5bc91dd6292dde4ca534b91fd7.bindPopup(popup_bbba0689df91cfc0ba2aa8b94f347a46)
+        ;
+
+        
+    
+    
+            marker_2ae86c5bc91dd6292dde4ca534b91fd7.bindTooltip(
+                `<div>
+                     Centro Comercial Cacique
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2ae86c5bc91dd6292dde4ca534b91fd7.setIcon(icon_c58a58e004294783c1b3922c8a1d8fbc);
+            
+    
+            var marker_52ca26eaeeb4626a731f45f1f2244ea0 = L.marker(
+                [7.070722605372017, -73.10545322620052],
+                {
+}
+            ).addTo(map_9db012fe00ce5e877bdce1650c34b8f0);
+        
+    
+            var icon_83792a84ba5c9411a20f9b232dd5a4b1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bolt",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7f287f904afee2140f4f6937886c4c9e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_505df563cb2ade2f4c604b76319282c9 = $(`<div id="html_505df563cb2ade2f4c604b76319282c9" style="width: 100.0%; height: 100.0%;">Centro Comercial Canaveral</div>`)[0];
+                popup_7f287f904afee2140f4f6937886c4c9e.setContent(html_505df563cb2ade2f4c604b76319282c9);
+            
+        
+
+        marker_52ca26eaeeb4626a731f45f1f2244ea0.bindPopup(popup_7f287f904afee2140f4f6937886c4c9e)
+        ;
+
+        
+    
+    
+            marker_52ca26eaeeb4626a731f45f1f2244ea0.bindTooltip(
+                `<div>
+                     Centro Comercial Canaveral
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_52ca26eaeeb4626a731f45f1f2244ea0.setIcon(icon_83792a84ba5c9411a20f9b232dd5a4b1);
+            
+    
+            var marker_2f27e6eee5bad7d267c53590ee25457a = L.marker(
+                [6.998348410998912, -73.05270638323637],
+                {
+}
+            ).addTo(map_9db012fe00ce5e877bdce1650c34b8f0);
+        
+    
+            var icon_2f36a234fb7b871d44a10a0c4b9afced = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bolt",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5b60f47f034ea6d59a21897fd264fc8f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bcfdf3c6f29db342846b8dd0a249567f = $(`<div id="html_bcfdf3c6f29db342846b8dd0a249567f" style="width: 100.0%; height: 100.0%;">Estacion de Servicio Terpel de Piedecuesta</div>`)[0];
+                popup_5b60f47f034ea6d59a21897fd264fc8f.setContent(html_bcfdf3c6f29db342846b8dd0a249567f);
+            
+        
+
+        marker_2f27e6eee5bad7d267c53590ee25457a.bindPopup(popup_5b60f47f034ea6d59a21897fd264fc8f)
+        ;
+
+        
+    
+    
+            marker_2f27e6eee5bad7d267c53590ee25457a.bindTooltip(
+                `<div>
+                     Estacion de Servicio Terpel de Piedecuesta
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2f27e6eee5bad7d267c53590ee25457a.setIcon(icon_2f36a234fb7b871d44a10a0c4b9afced);
+            
+    
+            var marker_b9d2669fcd9013bf4830ec3ffa329842 = L.marker(
+                [7.113534997127967, -73.12309979445544],
+                {
+}
+            ).addTo(map_9db012fe00ce5e877bdce1650c34b8f0);
+        
+    
+            var icon_09e894fa0a082baa8be8c187b90e13a3 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bolt",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6aa9e40d5bf5912258080b7fc6adb847 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8ee10217a40df0bfa9b8f88d5d1c5362 = $(`<div id="html_8ee10217a40df0bfa9b8f88d5d1c5362" style="width: 100.0%; height: 100.0%;">Éxito de la Rosita</div>`)[0];
+                popup_6aa9e40d5bf5912258080b7fc6adb847.setContent(html_8ee10217a40df0bfa9b8f88d5d1c5362);
+            
+        
+
+        marker_b9d2669fcd9013bf4830ec3ffa329842.bindPopup(popup_6aa9e40d5bf5912258080b7fc6adb847)
+        ;
+
+        
+    
+    
+            marker_b9d2669fcd9013bf4830ec3ffa329842.bindTooltip(
+                `<div>
+                     Éxito de la Rosita
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b9d2669fcd9013bf4830ec3ffa329842.setIcon(icon_09e894fa0a082baa8be8c187b90e13a3);
+            
+    
+            var marker_5b88e63ea96cef93650a80bf3aa3bb74 = L.marker(
+                [7.070730036568059, -73.10553799907328],
+                {
+}
+            ).addTo(map_9db012fe00ce5e877bdce1650c34b8f0);
+        
+    
+            var icon_9d666877024674bd598494c8f401efaa = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bolt",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4839301c4141e0639504b8ca27134c0c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b58f22d4f5bb2ed461819a8d5cc05bd8 = $(`<div id="html_b58f22d4f5bb2ed461819a8d5cc05bd8" style="width: 100.0%; height: 100.0%;">Centro Comercial la Florida</div>`)[0];
+                popup_4839301c4141e0639504b8ca27134c0c.setContent(html_b58f22d4f5bb2ed461819a8d5cc05bd8);
+            
+        
+
+        marker_5b88e63ea96cef93650a80bf3aa3bb74.bindPopup(popup_4839301c4141e0639504b8ca27134c0c)
+        ;
+
+        
+    
+    
+            marker_5b88e63ea96cef93650a80bf3aa3bb74.bindTooltip(
+                `<div>
+                     Centro Comercial la Florida
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5b88e63ea96cef93650a80bf3aa3bb74.setIcon(icon_9d666877024674bd598494c8f401efaa);
+            
+    
+            var marker_71a7f400df319b35917eace424c978ea = L.marker(
+                [7.085743648912543, -73.16471385719439],
+                {
+}
+            ).addTo(map_9db012fe00ce5e877bdce1650c34b8f0);
+        
+    
+            var icon_3543e35a74aaafa6674419a7d5b5fbec = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bolt",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_16883fb70f696006784e274d2dc55ad9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_caaeb5020ca9c380d93a489443eeece0 = $(`<div id="html_caaeb5020ca9c380d93a489443eeece0" style="width: 100.0%; height: 100.0%;">Promotores del Oriente (vía a Girón)</div>`)[0];
+                popup_16883fb70f696006784e274d2dc55ad9.setContent(html_caaeb5020ca9c380d93a489443eeece0);
+            
+        
+
+        marker_71a7f400df319b35917eace424c978ea.bindPopup(popup_16883fb70f696006784e274d2dc55ad9)
+        ;
+
+        
+    
+    
+            marker_71a7f400df319b35917eace424c978ea.bindTooltip(
+                `<div>
+                     Promotores del Oriente (vía a Girón)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_71a7f400df319b35917eace424c978ea.setIcon(icon_3543e35a74aaafa6674419a7d5b5fbec);
+            
+    
+            var marker_df43b506a0313872ffe422ca3dc7563c = L.marker(
+                [7.055875, -73.0790872],
+                {
+}
+            ).addTo(map_9db012fe00ce5e877bdce1650c34b8f0);
+        
+    
+            var icon_a339c48f2eaa95ef2ef52467b7e4c9b9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "star",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_938e3d753cc848353d6115b9556001cd = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d7bf621decc56156aa91cb0f2ead0d8e = $(`<div id="html_d7bf621decc56156aa91cb0f2ead0d8e" style="width: 100.0%; height: 100.0%;">Sugerencia 1 - Demanda: Alta</div>`)[0];
+                popup_938e3d753cc848353d6115b9556001cd.setContent(html_d7bf621decc56156aa91cb0f2ead0d8e);
+            
+        
+
+        marker_df43b506a0313872ffe422ca3dc7563c.bindPopup(popup_938e3d753cc848353d6115b9556001cd)
+        ;
+
+        
+    
+    
+            marker_df43b506a0313872ffe422ca3dc7563c.bindTooltip(
+                `<div>
+                     Nueva electrolinera sugerida 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_df43b506a0313872ffe422ca3dc7563c.setIcon(icon_a339c48f2eaa95ef2ef52467b7e4c9b9);
+            
+    
+            var marker_b420a18fda75fb4d25356757d3754236 = L.marker(
+                [7.0286819, -73.0678143],
+                {
+}
+            ).addTo(map_9db012fe00ce5e877bdce1650c34b8f0);
+        
+    
+            var icon_141fa8ec8755d8c8f50a3fe764ae3df8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "star",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c7240616600c79d86f7cea7007900031 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_78c82d47cf50320077bcd3fedcf4e186 = $(`<div id="html_78c82d47cf50320077bcd3fedcf4e186" style="width: 100.0%; height: 100.0%;">Sugerencia 2 - Demanda: Alta</div>`)[0];
+                popup_c7240616600c79d86f7cea7007900031.setContent(html_78c82d47cf50320077bcd3fedcf4e186);
+            
+        
+
+        marker_b420a18fda75fb4d25356757d3754236.bindPopup(popup_c7240616600c79d86f7cea7007900031)
+        ;
+
+        
+    
+    
+            marker_b420a18fda75fb4d25356757d3754236.bindTooltip(
+                `<div>
+                     Nueva electrolinera sugerida 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b420a18fda75fb4d25356757d3754236.setIcon(icon_141fa8ec8755d8c8f50a3fe764ae3df8);
+            
+    
+            var marker_f45379cd413c993419268df2c194bb83 = L.marker(
+                [7.0920548, -73.1301422],
+                {
+}
+            ).addTo(map_9db012fe00ce5e877bdce1650c34b8f0);
+        
+    
+            var icon_79c043f76a505e8e99f0f4b2b5abf029 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "star",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_65ef8489d4dbdbfac3a9cbdea2391623 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d481fb44688b42a2d59cd63b81496ed2 = $(`<div id="html_d481fb44688b42a2d59cd63b81496ed2" style="width: 100.0%; height: 100.0%;">Sugerencia 3 - Demanda: Alta</div>`)[0];
+                popup_65ef8489d4dbdbfac3a9cbdea2391623.setContent(html_d481fb44688b42a2d59cd63b81496ed2);
+            
+        
+
+        marker_f45379cd413c993419268df2c194bb83.bindPopup(popup_65ef8489d4dbdbfac3a9cbdea2391623)
+        ;
+
+        
+    
+    
+            marker_f45379cd413c993419268df2c194bb83.bindTooltip(
+                `<div>
+                     Nueva electrolinera sugerida 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f45379cd413c993419268df2c194bb83.setIcon(icon_79c043f76a505e8e99f0f4b2b5abf029);
+            
+    
+            var marker_d3dc36c7b40f23d85455507a7874523a = L.marker(
+                [7.135691, -73.1232591],
+                {
+}
+            ).addTo(map_9db012fe00ce5e877bdce1650c34b8f0);
+        
+    
+            var icon_918fb978c58ccef400220ad560bcb616 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "star",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_93d86cc542ec85b4482f3303d9b24cde = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ee4b7a9cddbe7563693903876bafc3f2 = $(`<div id="html_ee4b7a9cddbe7563693903876bafc3f2" style="width: 100.0%; height: 100.0%;">Sugerencia 4 - Demanda: Alta</div>`)[0];
+                popup_93d86cc542ec85b4482f3303d9b24cde.setContent(html_ee4b7a9cddbe7563693903876bafc3f2);
+            
+        
+
+        marker_d3dc36c7b40f23d85455507a7874523a.bindPopup(popup_93d86cc542ec85b4482f3303d9b24cde)
+        ;
+
+        
+    
+    
+            marker_d3dc36c7b40f23d85455507a7874523a.bindTooltip(
+                `<div>
+                     Nueva electrolinera sugerida 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d3dc36c7b40f23d85455507a7874523a.setIcon(icon_918fb978c58ccef400220ad560bcb616);
+            
+</script>
+</html>
