@@ -19,6 +19,13 @@ git clone https://github.com/sangiato2017/Electrolineras.git && cd Electrolinera
 ```
 
 **Windows (PowerShell)**
+
+```powershell
+git clone https://github.com/sangiato2017/Electrolineras.git; cd Electrolineras; python -m venv venv; .\venv\Scripts\Activate.ps1; pip install --upgrade pip; pip install -r requirements.txt; python main.py
+```
+
+en caso de que presente problemas:
+
 ```powershell
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser; git clone https://github.com/sangiato2017/Electrolineras.git; cd Electrolineras; python -m venv venv; .\venv\Scripts\Activate.ps1; pip install --upgrade pip; pip install -r requirements.txt; python main.py
 ```
