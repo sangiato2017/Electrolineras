@@ -1,5 +1,5 @@
 # PROYECTO DE AULA ELECTROLINERAS
----
+
 
 ## Descargar y ejecutar el programa
 
@@ -11,6 +11,17 @@ Estas lineas de comandos lo que hacen es:
 - Instalar las librerias necesarias para que el programa funcione desde requirments.txt
 - Ejecutar el programa
 
+---
+
+**macOS / Linux**
+```bash
+git clone https://github.com/sangiato2017/Electrolineras.git && cd Electrolineras && python -m venv venv && source venv/bin/activate && pip install --upgrade pip && pip install -r requirements.txt && python main.py
+```
+
+**Windows (PowerShell)**
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser; git clone https://github.com/sangiato2017/Electrolineras.git; cd Electrolineras; python -m venv venv; .\venv\Scripts\Activate.ps1; pip install --upgrade pip; pip install -r requirements.txt; python main.py
+```
 ---
 ### Recomendaciones al ejecutar
 
@@ -32,17 +43,7 @@ SISTEMA DE RECOMENDACIÓN DE NUEVAS ELECTROLINERAS
 opcion (1-7): 
 ``` 
 
-
-**macOS / Linux**
-```bash
-git clone https://github.com/sangiato2017/Electrolineras.git && cd Electrolineras && python -m venv venv && source venv/bin/activate && pip install --upgrade pip && pip install -r requirements.txt && python main.py
-```
-
-**Windows (PowerShell)**
-```powershell
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser; git clone https://github.com/sangiato2017/Electrolineras.git; cd Electrolineras; python -m venv venv; .\venv\Scripts\Activate.ps1; pip install --upgrade pip; pip install -r requirements.txt; python main.py
-```
-
+---
 Al terminar de trabajar, el entorno se desactiva ejecutando:
 
 ```bash
