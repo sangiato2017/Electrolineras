@@ -94,7 +94,7 @@ def entrenar_modelo(G):
     
     return modelo, df
 
-def predecir_electrolineras(G,modelo, df, n_electros=4, dist_min=0.02):
+def predecir_electrolineras(G,modelo, df, n_electros=5, dist_min=0.02):
     
     X = df[["lat", "lon", "densidad_urbana", "dist_electrolinera"]]
     df["prediccion"] = modelo.predict(X) # crea una nueva columna llamada predicción, y predice en base a los features de X
