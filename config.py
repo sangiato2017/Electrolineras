@@ -51,12 +51,17 @@ ELECTROLINERAS = [
     {"ide": 1, "nombre": "Homecenter"                                 , "lat": 7.115794947043329, "lon": -73.12049190407198},
     {"ide": 2, "nombre": "Centro Comercial Quinta Etapa"              , "lat": 7.115473864260488, "lon": -73.10771498564486},
     {"ide": 3, "nombre": "Centro Comercial Cacique"                   , "lat": 7.099383171372943, "lon": -73.10738728564714},
-    {"ide": 4, "nombre": "Centro Comercial Canaveral"                 , "lat": 7.070722605372017, "lon": -73.10545322620052},
+    {"ide": 4, "nombre": "Centro Comercial Canaveral"                 , "lat": 7.070249175365864, "lon": -73.10661713208079},
     {"ide": 5, "nombre": "Estacion de Servicio Terpel de Piedecuesta" , "lat": 6.998348410998912, "lon": -73.05270638323637},
     {"ide": 6, "nombre": "Éxito de la Rosita"                         , "lat": 7.113534997127967, "lon": -73.12309979445544},
     {"ide": 7, "nombre": "Centro Comercial la Florida"                , "lat": 7.070730036568059, "lon": -73.10553799907328},
     {"ide": 8, "nombre": "Promotores del Oriente (vía a Girón)"       , "lat": 7.085743648912543, "lon": -73.16471385719439},
 ]
+
+#7.070249175365864, -73.10661713208079
+
+#-73.10545322620052
+#7.070722605372017
 
 CARROS = [
     {"ide": 1, "modelo": "BYD SEAL 82.5 kWh RWD Design"  ,"gama": "alta", "cap_bat": 84.0, "autonomia": 455, "consumo": 0.172},
